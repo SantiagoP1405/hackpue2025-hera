@@ -52,15 +52,54 @@ Implementa la navegación autónoma del robot HERA.
 - **resource/**: Recursos del paquete.
 - **test/**: Pruebas unitarias y de estilo.
 
-### hera_voice_identifier/
-Implementa la identificación de voz para el robot HERA.
+### voz_identifier/
+Identificación de personas por voz usando SpeechBrain y ROS 2.
 
-- **package.xml, LICENSE, setup.cfg, setup.py**: Archivos estándar de ROS 2 Python.
-- **hera_voice_identifier/**: Código fuente principal:
-  - `grabador_referencia.py`: Nodo para grabar referencia de voz.
-  - `voz_identifier_node.py`: Nodo para identificar la voz.
-- **resource/**: Recursos del paquete.
-- **test/**: Pruebas unitarias y de estilo.
+Este paquete permite grabar voces de referencia y luego identificar en tiempo real a las personas por su voz, publicando el resultado en un tópico de ROS 2.
+
+Este paquete permite grabar voces de referencia y luego identificar en tiempo real a las personas por su voz, publicando el resultado en un tópico ROS 2.
+
+* Estructura
+
+- [voz_identifier/grabador_referencia.py](hackpue2025-hera/hack_pue_2025/voz_identifier/voz_identifier/grabador_referencia.py): Script para grabar voces de referencia y almacenarlas en ~/.voz_identifier_refs/.
+- [voz_identifier/voz_identifier_node.py](hackpue2025-hera/hack_pue_2025/voz_identifier/voz_identifier/voz_identifier_node.py): Nodo ROS 2 que detecta e identifica voces en tiempo real usando SpeechBrain.
+- [setup.py](hackpue2025-hera/hack_pue_2025/voz_identifier/setup.py) y [setup.cfg](hackpue2025-hera/hack_pue_2025/voz_identifier/setup.cfg): Archivos de configuración para instalar el paquete.
+- [package.xml](hackpue2025-hera/hack_pue_2025/voz_identifier/package.xml): Metadatos y dependencias ROS 2.
+* Instalació-n
+
+Compila el paquete con colcon:
+
+```
+colcon build --symlink-install --packages-select voz_identifier
+source install/setup.bash
+```
+
+* Uso
+
+1. *Graba las voces de referencia*  
+   Ejecuta el grabador y sigue las instrucciones:
+   ```
+   ros2 run voz_identifier grabador_referencia
+   ```
+   
+   Esto guardará archivos .wav en ~/.voz_identifier_refs/.
+
+2. *Ejecuta el nodo de identificación*  
+   Inicia el nodo que detecta y publica la voz identificada:
+   sh
+   ros2 run voz_identifier voz_identifier_node
+   
+   El resultado se publica en el tópico voz_detectada (tipo std_msgs/String).
+
+* Dependencias
+
+- ROS 2 (rclpy, std_msgs)
+- speechbrain
+- sounddevice
+- numpy
+- torch
+- torchaudio
+
 
 ---
 
