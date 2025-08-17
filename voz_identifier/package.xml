@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>voz_identifier</name>
+  <version>0.0.0</version>
+  <description>Identificación de personas por voz usando SpeechBrain</description>
+  <maintainer email="dario5feb6b@outlook.com">dario</maintainer>
+  <license>TODO: License declaration</license>
+
+  <!-- Dependencias de ROS necesarias para ejecución -->
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+
+  <!-- Dependencias de testing generadas por defecto -->
+  <test_depend>ament_copyright</test_depend>
+  <test_depend>ament_flake8</test_depend>
+  <test_depend>ament_pep257</test_depend>
+  <test_depend>python3-pytest</test_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>
