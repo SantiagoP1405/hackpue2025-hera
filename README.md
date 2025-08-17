@@ -73,9 +73,23 @@ Implementa la identificación de voz para el robot HERA.
 
 ## Requisitos
 
-- ROS 2 (Foxy, Humble, o superior)
-- Gazebo
-- Python 3.8+
+- ROS2 Humble
+- Ign Gazebo
+- Nav2
+- Slam
+- Python 3.10
+- Numpy
+- Micrófono
+- speechbrain
+- Sound Device
+
+## Ejecución
+Una vez copiado este repositorio, ejecutar los siguientes comandos en su espacio de trabajo:
+```
+colcon build --symlink-install --packages-select hera_robot_description hera_robot_bringup hera_robot_navigation hera_voice_identifier
+source install/setup.bash
+ros2 launch hera_robot_bringup gz_hera.launch.py 
+```
 
 ## Créditos
 
