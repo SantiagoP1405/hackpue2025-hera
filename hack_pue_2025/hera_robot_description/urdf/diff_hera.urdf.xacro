@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="diff_hera">
+    <xacro:include filename="$(find hera_robot_description)/urdf/common_properties.xacro" />
+    <xacro:include filename="$(find hera_robot_description)/urdf/mobile_base.xacro" />
+    <xacro:include filename="$(find hera_robot_description)/urdf/mobile_base_gazebo.xacro" />
+    <xacro:include filename="$(find hera_robot_description)/urdf/camera.xacro" /> 
+    <xacro:include filename="$(find hera_robot_description)/urdf/lidar.xacro" /> 
+    <!-- UBUNTU 24-->
+    
+</robot>
