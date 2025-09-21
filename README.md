@@ -309,10 +309,8 @@ ros2 launch hera_robot_bringup gz_hera.launch.py
 Identificación de personas por voz usando SpeechBrain y ROS 2.
 
 Este paquete permite grabar voces de referencia y luego identificar en tiempo real a las personas por su voz, publicando el resultado en un tópico de ROS 2.
-- [voz_identifier/grabador_referencia.py](hackpue2025-hera/voz_identifier/voz_identifier/grabador_referencia.py): Script para grabar voces de referencia y almacenarlas en ~/.voz_identifier_refs/.
-- [voz_identifier/voz_identifier_node.py](hackpue2025-hera/voz_identifier/voz_identifier/voz_identifier_node.py): Nodo ROS 2 que detecta e identifica voces en tiempo real usando SpeechBrain.
-- [setup.py](hackpue2025-hera/voz_identifier/setup.py) y [setup.cfg](hackpue2025-hera/voz_identifier/setup.cfg): Archivos de configuración para instalar el paquete.
-- [package.xml](hackpue2025-hera/voz_identifier/package.xml): Metadatos y dependencias ROS 2.
+- grabador_referencia.py: Script para grabar voces de referencia y almacenarlas en ~/.voz_identifier_refs/.
+- voz_identifier_node.py: Nodo ROS 2 que detecta e identifica voces en tiempo real usando SpeechBrain.
 
 
 En el mismo espacio de trabajo, compilar el paquete con colcon:
