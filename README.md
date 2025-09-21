@@ -1,5 +1,17 @@
 # hackpue2025-hera
 HACKPUE 2025 - HORIZON'S H.E.R.A (Horizons' Educational Robotic Assistant)
+
+## Authors / Autores
+* **Santiago Patricio Gómez Ochoa**
+    * [GitHub](https://github.com/SantiagoP1405)
+    * [LinkedIn](https://www.linkedin.com/in/santiago-patricio-g%C3%B3mez-ochoa-880137315/)
+* **Dario Alberto Sánchez Perzabal**
+    * [GitHub](https://github.com/DarioASP)
+    * [LinkedIn](https://www.linkedin.com/in/darios%C3%A1nchez/)
+* **Ana Paola Oviedo Salgado**
+    * [GitHub](https://github.com/anapaolaoviedo)
+    * [LinkedIn](https://www.linkedin.com/in/anapaolaoviedosalgado/)
+
 #### DEMO VIDEO: 
 https://youtu.be/szmfTx3GvAs
 
@@ -48,21 +60,120 @@ Implements the autonomous navigation of the HERA robot.
 - **resource/:** Package resources.
 - **test/:** Unit and style tests
 
-### voz_identifier/
+---
+
+## Instalation
+Se debe tener instalados los siguientes frameworks, considerando la distro **Humble** de ROS2:
+You must install the following frameworks and dependencies in your workspace, considering a ROS2 **Humble** distro:
+
+- Python 3.10
+- ROS2 Humble
+- Ign Gazebo
+- Nav2
+- Slam
+- Numpy
+- Micrófono
+- speechbrain
+- Sound Device
+- tf_transformations
+
+  ##### ROS2 Humble: 
+Follow the tutorial:
+* https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html
+##### NAV2:
+```
+sudo apt install ros-<ros2-distro>-navigation2
+sudo apt install ros-<ros2-distro>-nav2-bringup
+```
+##### Gazebo:
+Follow the tutorial:
+* https://jkk-research.github.io/workshops/f1tenth_sim_a/
+
+#### Pip:
+```
+sudo apt update
+sudo apt install python3-pip
+```
+
+#### Numpy/Sounddevice:
+```
+pip install numpy sounddevice
+```
+
+#### Pytorch:
+```
+pip install torch torchaudio --index-url https://download.pytorch.org/whl/cpu
+```
+
+#### Speechbrain:
+```
+pip install speechbrain
+```
+
+#### tf_transformations:
+```
+sudo apt install ros-humble-tf-transformations
+```
+
+(Using *pip*):
+```
+pip install tf-transformations
+```
+
+---
+
+## Execution
+Create the project folder:
+```
+cd
+mkdir Workspace
+cd Workspace
+mkdir hera_proyect
+cd hera_project
+git clone https://github.com/SantiagoP1405/hackpue2025-hera.git
+```
+Una vez copiado este repositorio, ejecutar los siguientes comandos en su espacio de trabajo:
+Once cloned de repository, execute the commands bellow in the created workspace:
+```
+cd
+cd Workspace/hera_proyect
+colcon build --symlink-install --packages-select hera_robot_description hera_robot_bringup hera_robot_navigation
+source install/setup.bash
+ros2 launch hera_robot_bringup gz_hera.launch.py 
+```
+
+
+### EXTRA: voz_identifier/
 Speaker identification by voice using SpeechBrain and ROS 2.
 This package allows recording reference voices and then identifying people in real-time by their voice, publishing the result to a ROS 2 topic.
 
-- [voz_identifier/grabador_referencia.py](hackpue2025-hera/voz_identifier/voz_identifier/grabador_referencia.py): Script to record reference voices and store them in ~/.voz_identifier_refs/.
-- [voz_identifier/voz_identifier_node.py](hackpue2025-hera/voz_identifier/voz_identifier/voz_identifier_node.py): ROS 2 node that detects and identifies voices in real-time using SpeechBrain.
-- [setup.py](hackpue2025-hera/voz_identifier/setup.py) y [setup.cfg](hackpue2025-hera/voz_identifier/setup.cfg): Configuration files to install the package.
-- [package.xml](hackpue2025-hera/voz_identifier/package.xml): ROS 2 metadata and dependencies.
+- grabador_referencia.py: Script to record reference voices and store them in ~/.voz_identifier_refs/.
+- voz_identifier_node.py: ROS 2 node that detects and identifies voices in real-time using SpeechBrain.
 
-## Instalation
-Compile the package with colcon:
+In the same workspace, compile the package with colcon:
+
 ```
 colcon build --symlink-install --packages-select voz_identifier
 source install/setup.bash
 ```
+
+* Usage
+
+1. *Record the reference voices*
+Run the recorder and follow the instructions:
+```
+ros2 run voz_identifier grabador_referencia
+```
+This will save .wav files in ~/.voz_identifier_refs/.
+
+2. *Run the identification node*
+Start the node that detects and publishes the identified voice:
+```
+ros2 run voz_identifier voz_identifier_node
+```
+The result is published on the voz_detectada topic (type std_msgs/String).
+
+---
 
 ## ESP:
 Contiene los recursos y código necesarios para la simulación y navegación del robot H.E.R.A en ROS 2. 
@@ -189,7 +300,7 @@ Una vez copiado este repositorio, ejecutar los siguientes comandos en su espacio
 ```
 cd
 cd Workspace/hera_proyect
-colcon build --symlink-install --packages-select hera_robot_description hera_robot_bringup hera_robot_navigation hera_voice_identifier
+colcon build --symlink-install --packages-select hera_robot_description hera_robot_bringup hera_robot_navigation
 source install/setup.bash
 ros2 launch hera_robot_bringup gz_hera.launch.py 
 ```
